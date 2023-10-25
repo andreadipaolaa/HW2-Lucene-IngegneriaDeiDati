@@ -24,6 +24,7 @@ import java.util.Map;
 public class Indexer {
     public void indexDocs(String indexPath, Codec codec, String docsPath) throws Exception {
         long startTime = System.currentTimeMillis();
+
         Analyzer defaultAnalyzer = new StandardAnalyzer();
         Map<String, Analyzer> perFieldAnalyzers = new HashMap<>();
         perFieldAnalyzers.put("titolo", new SimpleAnalyzer());

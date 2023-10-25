@@ -1,12 +1,13 @@
 package it.adp.idd;
 
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.it.ItalianAnalyzer;
+
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.Query;
 
-import java.io.File;
+import org.apache.lucene.codecs.simpletext.SimpleTextCodec;
+
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         Indexer indexer=new Indexer();
         try{
-            indexer.indexDocs(indexPath, null, docsPath);
+            indexer.indexDocs(indexPath, new SimpleTextCodec(), docsPath);
         }
         catch (Exception e){
             System.out.println("C'è stato un errore durante l'indicizzazione dei files: " + e.getMessage());
