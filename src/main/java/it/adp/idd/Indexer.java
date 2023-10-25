@@ -23,10 +23,11 @@ import java.util.Map;
 
 public class Indexer {
     public void indexDocs(String indexPath, Codec codec, String docsPath) throws Exception {
+        long startTime = System.currentTimeMillis();
         Analyzer defaultAnalyzer = new StandardAnalyzer();
         Map<String, Analyzer> perFieldAnalyzers = new HashMap<>();
         perFieldAnalyzers.put("titolo", new SimpleAnalyzer());
-        perFieldAnalyzers.put("contenuto", new ItalianAnalyzer());
+        perFieldAnalyzers.put("contenuto", new StandardAnalyzer());
 
         Analyzer analyzer = new PerFieldAnalyzerWrapper(defaultAnalyzer, perFieldAnalyzers);
 
@@ -52,6 +53,9 @@ public class Indexer {
 
         writer.commit();
         writer.close();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Indicizzazione completata in " + (endTime-startTime) + " millisecondi.");
+
 
         //Stampa statistiche
         try (IndexReader reader = DirectoryReader.open(indexDirectory)) {
@@ -63,5 +67,6 @@ public class Indexer {
         } finally {
             indexDirectory.close();
         }
+
     }
 }

@@ -37,6 +37,7 @@ public class FileReader {
         if(output.isEmpty()){
             throw new Exception("La directory non contiene file txt");
         }
+        System.out.println("numero di file letti: " + output.size());
         return output;
     }
 

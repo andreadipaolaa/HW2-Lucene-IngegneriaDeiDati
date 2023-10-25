@@ -36,7 +36,7 @@ public class Main {
                     query= new QueryParser("titolo", new SimpleAnalyzer()).parse(titolo);
                 } else if (input.startsWith("contenuto:")) {
                     String contenuto = input.substring(10);
-                    query= new QueryParser("contenuto", new ItalianAnalyzer()).parse(contenuto);
+                    query= new QueryParser("contenuto", new StandardAnalyzer()).parse(contenuto);
                 } else if (input.equals("exit")) {
                     System.out.println("Uscita dal programma.");
                     break;
